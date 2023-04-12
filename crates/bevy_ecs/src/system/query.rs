@@ -273,7 +273,7 @@ use std::{any::TypeId, borrow::Borrow, fmt::Debug};
 /// [`Table`]: crate::storage::Table
 /// [`With`]: crate::query::With
 /// [`Without`]: crate::query::Without
-pub struct Query<'world, 'state, Q: WorldQuery, F: ReadOnlyWorldQuery = ()> {
+pub struct Query<'world, 'state, Q: 'static + WorldQuery, F: 'static + ReadOnlyWorldQuery = ()> {
     world: &'world World,
     state: &'state QueryState<Q, F>,
     last_run: Tick,

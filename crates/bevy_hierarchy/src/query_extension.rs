@@ -78,7 +78,7 @@ impl<'w, 's, Q: WorldQuery, F: ReadOnlyWorldQuery> HierarchyQueryExt<'w, 's, Q, 
 /// An [`Iterator`] of [`Entity`]s over the descendants of an [`Entity`].
 ///
 /// Traverses the hierarchy breadth-first.
-pub struct DescendantIter<'w, 's, Q: WorldQuery, F: ReadOnlyWorldQuery>
+pub struct DescendantIter<'w, 's, Q: 'static + WorldQuery, F: 'static + ReadOnlyWorldQuery>
 where
     Q::ReadOnly: WorldQuery<Item<'w> = &'w Children>,
 {
@@ -122,7 +122,7 @@ where
 }
 
 /// An [`Iterator`] of [`Entity`]s over the ancestors of an [`Entity`].
-pub struct AncestorIter<'w, 's, Q: WorldQuery, F: ReadOnlyWorldQuery>
+pub struct AncestorIter<'w, 's, Q: 'static + WorldQuery, F: 'static + ReadOnlyWorldQuery>
 where
     Q::ReadOnly: WorldQuery<Item<'w> = &'w Parent>,
 {
